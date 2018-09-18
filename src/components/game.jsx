@@ -29,28 +29,34 @@ class Game extends Component {
       return;
     }
     alert("NumPlayers was set: " + this.state.Numplayers);
-    console.log(this.state.NumPlayers);
     event.preventDefault();
   }
 
+  getNumberOfPlayersFromUser() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Number Of Players:
+          <input
+            type="number"
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+
   render() {
-    console.log("props", this.props);
+    //console.log("props", this.props);
 
     return (
       <header>
         <h1>Welcome to the Avalon Game</h1>
         <h2>Please Enter a Number of Players Between 5 and 10</h2>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Number Of Players:
-            <input
-              type="number"
-              value={this.state.value}
-              onChange={this.handleChange}
-            />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        {this.getNumberOfPlayersFromUser()}
+        {console.log(this.state.Numplayers)}
       </header>
     );
   }

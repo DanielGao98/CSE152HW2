@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import NumberOfRoundsEnum from "./NumberOfRounds";
+import ReactDOM from "react-dom";
 
 let OutOfRange = false;
+
 class Game extends Component {
   constructor(props) {
     super(props);
@@ -29,7 +31,11 @@ class Game extends Component {
       alert("Please Enter a Number between 5 and 10");
       return;
     }
-    alert("NumPlayers was set: " + this.state.Numplayers);
+    //alert("NumPlayers was set: " + this.state.Numplayers);
+    var LoadNewGameInstance = <GameInstance CurrRound={this.state.rounds[0]} />;
+    ReactDOM.render(LoadNewGameInstance, document.getElementById("root"));
+    console.log("reached");
+    //ReactDOM.unmountComponentAtNode(Game);
     event.preventDefault();
   }
 
@@ -57,6 +63,24 @@ class Game extends Component {
         {this.getNumberOfPlayersFromUser()}
         {console.log(this.state.Numplayers)}
         {console.log(this.state.rounds)}
+      </header>
+    );
+  }
+}
+
+class GameInstance extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      CurrRound: props.CurrRound
+    };
+  }
+
+  render() {
+    return (
+      <header>
+        <h1>HEllo</h1>
+        {console.log(this.state.CurrRound)}
       </header>
     );
   }

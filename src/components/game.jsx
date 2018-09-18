@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import NumberOfRoundsEnum from "./NumberOfRounds";
 
 let OutOfRange = false;
 class Game extends Component {
@@ -6,7 +7,8 @@ class Game extends Component {
     super(props);
     this.state = {
       NumPlayers: 0,
-      PlayerArray: null
+      PlayerArray: null,
+      rounds: null
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,8 +21,7 @@ class Game extends Component {
     }
     OutOfRange = false;
     this.setState({ Numplayers: event.target.value });
-    console.log(this.state.NumPlayers);
-    console.log(event.target.value);
+    this.setState({ rounds: NumberOfRoundsEnum[event.target.value] });
   }
 
   handleSubmit(event) {
@@ -49,14 +50,13 @@ class Game extends Component {
   }
 
   render() {
-    //console.log("props", this.props);
-
     return (
       <header>
         <h1>Welcome to the Avalon Game</h1>
         <h2>Please Enter a Number of Players Between 5 and 10</h2>
         {this.getNumberOfPlayersFromUser()}
         {console.log(this.state.Numplayers)}
+        {console.log(this.state.rounds)}
       </header>
     );
   }

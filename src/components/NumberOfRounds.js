@@ -6,3 +6,5 @@ const NumberOfRoundsEnum = Object.freeze({
   9: [3, 4, 4, 5, 5],
   10: [3, 4, 4, 5, 5]
 });
+
+export default NumberOfRoundsEnum;

@@ -10,19 +10,31 @@ class GameInstance extends Component {
       Rounds: props.Rounds,
       CurrRound: 0,
       NumPlayers: props.NumPlayers,
-      Players: Array(props.NumPlayers).fill(6)
+      Players: Array(props.NumPlayers).fill(null)
     };
   }
 
-  initializePlayers(NumPlayers) {
-    this.setState({ Players: Array(NumPlayers).fill(Player) });
+  initializePlayers() {
+    var AllegianceArray = Array(this.state.NumPlayers).fill(0);
+    console.log(AllegianceArray);
+    var TotalSpies = 0;
+    while (TotalSpies < Math.floor((this.state.NumPlayers - 1) / 2)) {
+      var index = getRandomInt(this.state.NumPlayers);
+      console.log(index);
+      if (AllegianceArray[index] != 1) {
+        AllegianceArray[index] = 1;
+        TotalSpies++;
+        console.log(AllegianceArray);
+      }
+    }
+    console.log(AllegianceArray);
   }
 
   render() {
     return (
       <header>
         <h1>Round {this.state.CurrRound}</h1>
-        {/* {this.initializePlayers(this.state.NumPlayers)} */}
+        {this.initializePlayers()}
         {console.log(this.state)}
         {console.log(this.state.Rounds)}
         {console.log(this.state.NumPlayers)}
@@ -30,6 +42,9 @@ class GameInstance extends Component {
       </header>
     );
   }
+}
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 export default GameInstance;

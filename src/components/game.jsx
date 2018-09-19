@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import NumberOfRoundsEnum from "./NumberOfRounds";
 import ReactDOM from "react-dom";
+import GameInstance from "./gameInstance";
 
 let OutOfRange = false;
 
@@ -8,7 +9,7 @@ class Game extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      NumPlayers: 0,
+      NumPlayers: null,
       PlayerArray: null,
       rounds: null
     };
@@ -22,7 +23,7 @@ class Game extends Component {
       return;
     }
     OutOfRange = false;
-    this.setState({ Numplayers: event.target.value });
+    this.setState({ NumPlayers: parseInt(event.target.value, 10) });
     this.setState({ rounds: NumberOfRoundsEnum[event.target.value] });
   }
 
@@ -32,7 +33,12 @@ class Game extends Component {
       return;
     }
     //alert("NumPlayers was set: " + this.state.Numplayers);
-    var LoadNewGameInstance = <GameInstance CurrRound={this.state.rounds[0]} />;
+    var LoadNewGameInstance = (
+      <GameInstance
+        Rounds={this.state.rounds}
+        NumPlayers={this.state.NumPlayers}
+      />
+    );
     ReactDOM.render(LoadNewGameInstance, document.getElementById("root"));
     console.log("reached");
     //ReactDOM.unmountComponentAtNode(Game);
@@ -61,26 +67,9 @@ class Game extends Component {
         <h1>Welcome to the Avalon Game</h1>
         <h2>Please Enter a Number of Players Between 5 and 10</h2>
         {this.getNumberOfPlayersFromUser()}
+        {console.log(this.state)}
         {console.log(this.state.Numplayers)}
         {console.log(this.state.rounds)}
-      </header>
-    );
-  }
-}
-
-class GameInstance extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      CurrRound: props.CurrRound
-    };
-  }
-
-  render() {
-    return (
-      <header>
-        <h1>HEllo</h1>
-        {console.log(this.state.CurrRound)}
       </header>
     );
   }

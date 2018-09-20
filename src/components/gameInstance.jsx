@@ -28,6 +28,17 @@ class GameInstance extends Component {
       }
     }
     console.log(AllegianceArray);
+    var Leader = getRandomInt(this.state.NumPlayers);
+    console.log(Leader);
+    var Merlin = getRandomInt((this.state.NumPlayers) - TotalSpies);
+
+    this.state.Players[Leader] = (
+      <Player Allegiance = {AllegianceArray[Leader]} 
+    )
+
+    for (player in this.state.Players) {
+
+    }
   }
 
   render() {

@@ -68,7 +68,7 @@ class Game extends Component {
         <h2>Please Enter a Number of Players Between 5 and 10</h2>
         {this.getNumberOfPlayersFromUser()}
         {console.log(this.state)}
-        {console.log(this.state.Numplayers)}
+        {console.log(this.state.NumPlayers)}
         {console.log(this.state.rounds)}
       </header>
     );
